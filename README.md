@@ -131,7 +131,7 @@ app.component.spec.ts: usefull for testing purpose.<br>
 app.module.ts: entry point<br>
 
 <b>Adding new component</b><br>
-<b>Creating the component:<br>
+<b>Creating the component:</b><br>
 >ng generate component AllComponents/blog<br>
 AllComponent is the name of the folder for all the newly created component for my understanding, i can direcly use ng generate component blog this will create all files inside app root.<br>
 <b>Using this component:</b><br>
