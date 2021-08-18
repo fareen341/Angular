@@ -526,7 +526,82 @@ stud = [
 </pre>
   
 <h3>Simple Form</h3>
-1:33:30
+<pre>
+Step 1: import in .ts file
+import { FormsModule } from '@angular/forms';
+
+imports: [
+    CommonModule,
+    FormsModule         //added by me
+  ],
+  
+Step 2:
+.ts file
+getUserValue(value : any){
+    console.log(value)
+  }
+
+.html
+&lt;form #simpleForm = "ngForm" (ngSubmit) = "getUserValue(simpleForm.value)"&gt;
+    Name:&lt;input type="text" ngModel name="username"&gt;&lt;br&gt;&lt;br&gt;
+   Password:&lt;input type="text" ngModel name="password"&gt;&lt;br&gt;&lt;br&gt;
+    &lt;button&gt;Get Values&lt;/button&gt;
+</form>
+
+ngModel will tell the forms are connected
+</pre>
+
+<h3>Creating header and footer in angular</h3>
+Common header and footer<br>
+Create two component header and footer design it using css<br>
+Three ways to give css:<br>
+1)inside component's css.<br>
+2)style.css, which is already present in app folder. It is used for global css.<br>
+3)inside asserts create css files.<br>
+
+<h3>Style bindig in angular</h3>
+Difference between normals style and style binding.<br>
+if the data is coming from api or something and give it color.<br>
+<pre>
+  &lt;h1 style="background-color:skyblue"&gt;dynamic binding&lt;/h1&gt;           //normal style
+  &lt;h1 [style.backgroundColor]=" 'green' "&gt;dynamic binding 2&lt;/h1&gt;      //style with binding
+  &lt;h1 [style.backgroundColor]="col"&gt;dynamic binding 3&lt;/h1&gt;            //style coming from .ts
+  
+Changing color on click of the button:
+.ts
+  color = ""
+  changecol(){
+      this.color = "pink"
+  }
+
+.html
+  &lt;h1 [style.backgroundColor]="color"&gt;dynamic binding 2&lt;/h1&gt;
+  &lt;br&gt;
+  &lt;button (click)="changecol()"&gt;dynamic binding 2&lt;/button&gt;
+</pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
