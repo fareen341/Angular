@@ -740,6 +740,351 @@ Now for any page which is not there if user hit that page it'll show page not fo
 </pre>
 
 <h3>Custom directive</h3>
+Used to manupulate DOM & HTML. Example, ngfor loop, switch etc
+<pre>
+Step 1:
+>ng g directive customstyle
+
+It updated one file and created 2 new files
+CREATE src/app/customstyle.directive.spec.ts (244 bytes)
+CREATE src/app/customstyle.directive.ts (151 bytes)
+UPDATE src/app/app.module.ts (705 bytes)
+
+Step 2:
+customstyle.directive.ts
+                    //added by me
+import { Directive, ElementRef }
+
+ constructor(private el:ElementRef) { 
+    el.nativeElement.style.color="green"
+  }
+  
+ .html
+ &lt;h1 appCustomstyle>Custom heading&lt;/h1&gt;
+</pre>
+
+<h3>Service in angular</h3>
+It is used to share data between two to three component, example we want to show user data between 2-3 component. And it is not conmponent and module dependent.
+<pre>
+Step 1:
+>ng g service usersData
+
+it created 2 files
+CREATE src/app/users-data.service.spec.ts (373 bytes)
+CREATE src/app/users-data.service.ts (138 bytes)
+
+Step 2:
+user-data.service.ts
+
+import { UsersDataService } from './users-data.service';
+
+  constructor() {}
+
+  getData(){
+    return {name:'fareen', age:20}
+  }
+}  
+
+app.component.ts
+  constructor(private user:UsersDataService)
+  {
+    console.log(this.user.getData())
+  }
+}
+
+</pre>
+
+<h3>API call</h3>
+Api is called with service, so we we'll create service. Angulr is UI development so it can't directly call the database so we need API to interact with data.
+<pre>
+users.data.services.ts
+import {HttpClient} from '@angular/common/http'
+
+  constructor(private http:HttpClient) {}
+  getData(){
+    let url="https://jsonplaceholder.typicode.com/todos/"
+  }
+  
+Step 2:
+app.module.ts
+
+import { HttpClientModule } from '@angular/common/http';
+imports: [
+    HttpClientModule
+  ],
+
+Step 3:
+app.component.ts
+import { UsersDataService } from './users-data.service';
+
+constructor(private user:UsersDataService)
+  {
+    this.user.getData().subscribe(data=>{
+      console.log(data);
+    })
+  }
+  
+Step 4:
+user-data.service.ts
+
+import {HttpClient} from '@angular/common/http'
+
+export class UsersDataService {
+
+  constructor(private http:HttpClient) {}
+
+  getData(){
+    let url="https://jsonplaceholder.typicode.com/todos/"
+    return this.http.get(url);
+  }
+} 
+
+Output: all the json data which is present at(https://jsonplaceholder.typicode.com/todos/) will be visible on console 
+</pre>
+
+<h3>Show list from API data</h3>
+<pre>
+app.component.ts
+
+  data:any = [];
+  constructor(private user:UsersDataService)
+  {
+      this.user.getData().subscribe(data=>{
+      console.log(data);
+      this.data = data;
+    })
+  }
+  
+app.component.html
+&lt;table border="1"&gt;
+  &lt;tr&gt;
+      &lt;td&gt;UserId&lt;/td&gt;
+      &lt;td&gt;Id&lt;/td&gt;
+      &lt;td&gt;Title&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr *ngFor="let i of data"&gt;
+      &lt;td&gt;{{i.userId}}&lt;/td&gt;
+      &lt;td&gt;{{i.id}}&lt;/td&gt;
+      &lt;td&gt;{{i.title}}&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+</pre>
+
+<h3>Model in angular</h3>
+It define data structure. It'll tell what data is belongs to which data type, It does the data validation. It is part of typescript.
+<pre>
+Step 1:
+app.component.ts
+
+below the import define the data type
+interface dataType{
+  name:string,
+  age:number,
+  indian:boolean,
+  address:any
+}
+
+app.component.ts
+export class AppComponent {
+  getUserData(){
+    const data:dataType={
+      name:'fareen',
+      age:20,
+      indian: true,
+      address: '123, Colm street'
+    }
+    return data;
+  }
+}
+ 
+The same we can use inside the service file
+
+Step 1:
+Or We can use seperate mydt.ts
+export interface dataType{
+  name:string,
+  age:number,
+  indian:boolean,
+  address:any
+}
+
+Step 2:import it
+app.component.ts
+
+import { dataType } from './mydt'; 
+
+export class AppComponent {
+  getUserData(){
+    const data:dataType={
+      name:'fareen',
+      age:20,
+      indian: true,
+      address: '123, Colm street'
+    }
+    return data;
+  }
+}
+</pre>
+
+<h3>Routing Module</h3>
+Example every module has it's own routing. When we go on specific UI module the routing related to that module will be load at that time. Example Admin and User module. So when we access admin then users rout will not be loaded and vice versa, so that speed of our application will increase
+<pre>
+Step 1:
+>ng g modulename --routing
+>ng g module admin --routing
+
+this will generate 2 files 
+CREATE src/app/admin/admin-routing.module.ts (248 bytes)
+CREATE src/app/admin/admin.module.ts (276 bytes)
+
+Step 2: create component
+>ng g component admin/login
+>ng g component admin/list
+
+Step 3: go to module's routing.ts file
+admin-routing.module.ts
+
+import { LoginComponent } from './login/login.component';
+import { ListComponent } from './list/list.component';
+
+
+const routes: Routes = [
+  {
+    path:'AdminLogin', component:LoginComponent
+  },
+  {
+    path:'AdminList', component:ListComponent
+  }
+];
+
+Step 4: import the admin component inside app's .ts file
+app.module.ts
+import { AdminModule } from './admin/admin.module';
+
+imports: [
+    AdminModule
+  ],
+
+if the link is not working restart ng serve
+</pre>
+
+<h3>Group Routing</h3>
+Example we have two module Admin and User and both have same login page then how will we know which one is admin's login and which is user's. In this case we'll use group routing this is similar like App level url in django. Example for admin's login we'll use localhost:4200/admin/login.
+<pre>
+Step 1:
+Same step like above create two modules with routing file
+
+If we don't give group routing and routing is present in both admin and user then according to alphabhetical order admin routig will get the priority.
+
+Step 2:
+admin-routing.module.ts
+const routes: Routes = [
+  {
+    path:'admin',children:[
+      {
+        path:'AdminLogin', component:LoginComponent
+      },
+      {
+        path:'AdminList', component:ListComponent
+      }
+    ]
+  }
+]; 
+
+Do same for users module too
+
+Step 3:
+.html
+&lt;h1&gt;Link coming from the module's page&lt;/h1&gt;
+&lt;h1&gt;Admin Stuff&lt;/h1&gt;
+&lt;a routerLink="admin/AdminLogin"&gt;Login&lt;/a&gt;&lt;br&gt;&lt;br&gt;
+&lt;a routerLink="admin/AdminList"&gt;List&lt;/a&gt;&lt;br&gt;&lt;br&gt;
+
+&lt;h1&gt;Login Stuff&lt;/h1&gt;
+&lt;a routerLink="user/UserLogin"&gt;Login&lt;/a&gt;&lt;br&gt;&lt;br&gt;
+&lt;a routerLink="user/UserList"&gt;List&lt;/a&gt;&lt;br&gt;&lt;br&gt;
+&lt;router-outlet&gt;&lt;/router-outlet&gt;
+&lt;hr&gt;
+</pre>
+
+<h3>Lazy loading in angular</h3>
+What is the difference between normal loading and lazy loading?<br>
+Lazy loading basically apply on routing.<br>
+Whenever we load a page then if we have 1000 pages all will load together which make the website slow, in case of lazy loading only the page we need will load this increase the speed and improve the performance.<br>
+NOTE: In the above example we were importing the admin and users inside the app.module.ts, But in this case we don't do that.<br>
+<pre>
+router.ts file of admin
+const routes: Routes = [
+  //this will run only when we need this
+  {
+    path:'admin' , loadChildren:()=>import('./admin.module').then(mod=>mod.AdminModule)
+  }
+];
+
+.html
+&lt;h1&gt;Link coming from the module's page&lt;/h1&gt;
+&lt;h1&gt;Admin Stuff&lt;/h1&gt;
+&lt;a routerLink="admin/AdminLogin"&gt;Login&lt;/a&gt;&lt;br&gt;&lt;br&gt;
+&lt;a routerLink="admin/AdminList"&gt;List&lt;/a&gt;&lt;br&gt;&lt;br&gt;
+&lt;router-outlet&gt;&lt;/router-outlet&gt;
+
+PENDING
+</pre>
+
+<h3>Lazy loading component</h3>
+PENDING
+
+<h3>Forms Intro</h3>
+Types:1) Reactive form(control data in component.ts file) 2)Template drivern(control data in component.html file).<br>
+They both have validation and handling data is slight different in both.<br>
+
+![form](https://user-images.githubusercontent.com/59610617/129926359-b38d19ae-f38b-4624-8dd4-ac0769a79a58.png)<br>
+
+<b>Data flow work</b><br>
+Form -> .ts file ->service(call api and transfer data to server) -> server<br>
+
+<h3>Template driver form</h3>
+If we want to make any basic form then we use this one.
+<pre>
+Step 1:
+app's .ts file
+
+import { FormsModule } from '@angular/forms';
+
+imports: [
+    FormsModule,
+  ],
+  
+app's .html
+<form #simpleForm = "ngForm" (ngSubmit) = "getUserValue(simpleForm.value)">
+    Name:<input type="text" ngModel name="username"><br><br>
+   Password:<input type="text" ngModel name="password"><br><br>
+    <button>Get Values</button>
+</form>
+
+Here id is simpleForm 
+onSubmit we have to give function
+ngModel to bind it with simpleForm
+</pre>
+
+<h3>Adding bootstrap in form</h3>
+Just insatall the bootstrap using:<br>
+>ng add @ng-bootstrap/schematics<br>
+No need to add,import anything else. Restart ng serve<br>
+Now bootstrap added start using the bootstrap from there official website.<br>
+
+<h3>Angular reactive form validation</h3>
+<pre>
+Step 1: import reactive form
+import { ReactiveFormsModule } from '@angular/forms';
+ imports: [
+    ReactiveFormsModule
+  ],
+  
+ Step 2:
+ 
+ PENDING
+</pre>
 
 
 
