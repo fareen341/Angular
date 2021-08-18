@@ -12,7 +12,7 @@
 <a name="one"><h2>1.1 Course Description</h2></a><br>
 Angular is developed by google. Angular is new, angularjs is old. Open source web application framework led by the angular team at google. Mostly ppl use npm not the cdn like in jquery. documentation : https://angular.io/tutorial <br>
 
-Advantages of Angular<br>
+Advantages of Angular<br> 
 1)We can create single page application
 
 <h3>1.2 INTRODUCTION</h3>
@@ -117,6 +117,14 @@ We included jquery and bootstrap both
 Step 3: 
 NOTE: Whenever we does some changes we must restart ng serve
 </pre>
+
+<h3>Angular Bootstrap</h3>
+We have angular bootstrap website (https://ng-bootstrap.github.io/#/home).<br>
+There is also steps to insall it, We just have to use one command givenon the home page of the website and no need to add any module etc after executing the command start using the components given in angular bootstrap. The first command is for angular 9 and latest, if we want to use old one then there is another command is given.<br>
+
+<h3>Adding Material UI</h3>
+https://material.angular.io/guide/getting-started<br>
+All material + commands given in doc.<br>
 
 <h3>Components</h3>
 <b>Understanding the first component which we get after app creation</b><br>
@@ -578,20 +586,160 @@ Changing color on click of the button:
   &lt;h1 [style.backgroundColor]="color"&gt;dynamic binding 2&lt;/h1&gt;
   &lt;br&gt;
   &lt;button (click)="changecol()"&gt;dynamic binding 2&lt;/button&gt;
+  
+ 
+Conditional styling:
+.ts
+err=true;
+ 
+if there is error then color red else green
+ 
+.html
+&lt;h1 [style.backgroundColor]="err? 'red': 'green' "&gt;dynamic binding 2&lt;/h1&gt;
 </pre>
 
+<h3>Passing data from parent to child component</h3>
+<pre>
+Step 1: create child component
+Step 2: in parent component
+.ts
+author = "fareen"
 
+.html
+  &lt;app-signup [aut] = "author"&gt;&lt;/app-signup&gt;
+ 
+Now parent done sending data, now child's work
 
+Step 2: in child component
+import Input inside the 
+.ts
+        //added by me
+OnInit, Input }
 
+export class SignupComponent implements OnInit {
 
+  @Input() author: any        //adde by me
+  
+.html
+&lt;h1&gt;{{author}}&lt;/h1&gt;
 
+passing object data
+.ts
+stud = {
+  name:'marry',
+  age:20
+  }
+  
+.html
+{{stud.name}}
 
+Making a component reusable
+now if we have lots of data then useing for loop we can make this component reusable
+</pre>
 
+<h3>Passing data from child to parent component</h3>
+<pre>
+PENDING
+</pre>
 
+<h3>Pipe in Angular</h3>
+To format the data string etc we make use of pipe, Example if i want all names to be display in Title case then we need to make function etc, so to not make it hard just use pipe concept. It is like we use in django's | to make a string title case.
+<pre>
+.ts
+author =  'Fareen Ansari'
 
+.html
+&lt;h1&gt;{{author | uppercase}}&lt;/h1&gt;
 
+More on string:
+titlecase
 
+Slicing:
+{{author : slice:1}}          //op:areen
+{{author : slice:1:5}}        //op:aree
 
+Formating date:
+.ts 
+today = Date.today()
+
+.html
+{{today}}                          //op:1629270053437
+{{today | date}}                   //op:Aug 18, 2021
+{{today | date:'fullDate'}}        //op:Wednesday, August 18, 2021
+
+For currency:
+.ts
+cash = 10;
+
+.html
+{{cash | currency:'USD'}}         //$10.00
+</pre>
+
+<h3>Routing</h3>
+If you didn't select routing option on the project creating time then we can make use for this command to add it in the project:<br>
+>ng generate module app-routing --flat --module=app
+Here we'll work on the 'app-routing.module.ts' file.<br>
+<pre>
+app-routing.module.ts
+import { LoginComponent } from './users/login/login.component';
+import { SignupComponent } from './users/signup/signup.component';
+
+const routes: Routes = [
+//create an array of object, added by me
+{
+  path:'login',
+  component : LoginComponent
+},
+{
+  path:'signup',
+  component:SignupComponent
+}
+];
+
+app.component.html
+<a routerLink="login">Login</a><br><br>
+<a routerLink="signup">Signup</a>
+
+If we don't give router-outlet then the page will navigate to that link but the page data won't be visible.
+<router-outlet></router-outlet>
+
+if someone comes at login send the to login page etc
+</pre>
+
+<h3>Four o four page</h3>
+If we give a link and the page is not present in that page then it'll show error to give message that page not found. It basically handles page not found
+<pre>
+Create new component for 404 page using wildcard.
+
+Same process like routing the page just add double start which is called wildcard in path.
+
+.ts
+import { PgComponent } from './AllComponents/blog/blog.component';
+
+const routes: Routes = [
+//create an array of object, added by me
+{
+  path:'login',
+  component : LoginComponent
+},
+{
+  path:'signup',
+  component:SignupComponent
+},
+{
+  path:'**',
+  component: PgComponent
+}
+];
+
+.html
+&lt;h1&gt;Page Not Found&lt;/h1&gt;
+
+We can design this page
+Now for any page which is not there if user hit that page it'll show page not fount and not give the error. Example link http://localhost:4200/follow  will show page not found.
+</pre>
+
+<h3>Custom directive</h3>
 
 
 
