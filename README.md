@@ -2,54 +2,76 @@
 
 [<h2>1.1 Course Description</h2>](#one)
 
-<li>1.2 Why learn Django?</li>
+[<h2>1.2 Introduction</h2>](#two)
 
-[<h2>2 Django Course Content</h2>](#two)
+[<h2>1.3 Creating first project</h2>](#three)
 
+[<h2>1.4 Files and Folders in App</h2>](#four)
 
+[<h2>1.5 Module</h2>](#five)
 
+[<h2>1.6 Component</h2>](#six)
 
+[<h2>1.7 Adding Bootstrap</h2>](#seven)
+
+[<h2>1.8 Interpolation</h2>](#eight)
+
+[<h2>1.9 Data Binding</h2>](#nine)
+
+[<h2>1.10 Pipes</h2>](#ten)
+<hr>
 <a name="one"><h2>1.1 Course Description</h2></a><br>
-Angular is developed by google. Angular is new, angularjs is old. Open source web application framework led by the angular team at google. Mostly ppl use npm not the cdn like in jquery. documentation : https://angular.io/tutorial <br>
+Angular is developed by google. Angular is new, angularjs is old. Open source web application framework led by the angular team at google. Mostly ppl use npm not the cdn like in jquery. Angular JS (Angular 1.0.0) was JS framework, developed in JS. It implemented MVC architecture. Angular ( all versions from 2 onwards), was a complete rewrite of Angular using TS. Documentation : https://angular.io/tutorial <br>
+
+What is Angular? <br>
+Angular is an open-source, JavaScript framework written in TypeScript. Angular is a framework for building web applications, both large and small scale. You can build a full‑featured enterprise‑level product management and inventory application or anything in between. Now before diving into Angular framework let’s understand why it is called a framework and what is the difference between a normal library and a framework. <br>
+
+Framework vs Library <br>
+The basic difference lies in a term called Inversion of Control. When you use a library, you are in charge of the application flow. You choose when and where to call the functions of that library. When you use a framework, the framework is in charge of the flow. The framework has a predefined structure where you write a code. In a nutshell, you tell libraries what to do, frameworks tell you what to do. Obviously the framework provides a lot more features than this. <br>
 
 Advantages of Angular<br> 
-1)We can create single page application
+1)We can create single page application <br>
 
-<h3>1.2 INTRODUCTION</h3>
+<a name="two"><h2>1.2 INTRODUCTION</h2></a><br>
 <b>Installation</b><br>
-We need node js for installation of angular.<br>
+We need node js for installation of angular. When you install NodeJS, you will get NPM along with it which is a Node Package Manager. Using npm we can install Angular and it’s dependencies.<br>
 
 <b>To check the version of node and npm</b><br>
 In folder shift+open power shell and use commands:<br>
 >node --version<br>
 >npn --version<br>
+If these commands print out the proper version of node and npm that means NodeJS is properly installed.<br>
 
 <b>Angular CLI</b><br>
 The Angular CLI is a command-line interface tool that you use to initialize, develop, scaffold, and maintain Angular applications directly from a command shell.<br>
-Download and install CLI using the commands given in here https://angular.io/cli <br>
-Insatlling: >npm install -g @angular/cli<br>
-Check the version: >ng version<br>
-If the powershell asking for policy the use:<br>
+Installing Angular CLI using commands given in here https://angular.io/cli <br>
+Insatlling: 
+>npm install -g @angular/cli<br>
+Check the version: 
+>ng version<br>
+If the powershell asking for policy then use:<br>
 Change the execution policy:<br>
 >Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser<br>
 
-Removing the execution policy:<br>
+In case i want to remove it, Removing the execution policy:<br>
 >Set-ExecutionPolicy -ExecutionPolicy Undefined -Scope CurrentUser<br>
 
-<h3>1.3 Creating New Project</h3>
+<a name="three"><h2>1.3 Creating First Project</h2></a><br>
 <b>Creating a new project</b>
 >ng new project_name
 If we want to use routing as well them press y, same for css<br>
 Now it'll install the base files<br>
+NOTE: if the option is in uppercase as in Y or N then the npm is recommending that option, but it is up to us weather to select that option ot not.<br>
 
-In all the folders we'll 90% work on src cuz that will convert our angular source code. index.html is the entry point
+From all the folders we'll work 90% on src cuz that will convert our angular source code. index.html is the entry point
 
 To run the project on browser we use:<br>
 >ng server
 
-<h3>1.4 Files/Folders in Apps explain?</h3>
+<a name="four"><h2>1.4 Files/Folders in Apps explain?</h2></a><br>
 <pre>
 FILES
+these files are given in itvedant's anatomy of angular application
 1)package.json:
 the first file which is created, it contain the ng commands etc.
 if we want to add example a google map then we add it inside the defDepedencies.
@@ -91,15 +113,12 @@ iii)tsconfig.app.json: contains configuration file of our app.
 7)e2e folder: end to end testing, used for testing.
 </pre>
 
-<h3>Adding bootstrap</h3>
+<a name="seven"><h2>1.7 Adding bootstrap</h2></a><br>
 <pre>
 Step 1:
 Installing bootstrap using npm:
->npm install bootstrap
-when we hit enter bootstrap will be added into the app.component.html and package.json too
-
-Installing jquery too:
->npm install jquery
+>npm install bootstrap          //when we hit enter bootstrap will be added into the app.component.html and package.json too
+>npm install jquery             //installing jquery
 
 Step 2:
 include both in angular.json
@@ -115,18 +134,20 @@ inside the build-> styles:
 We included jquery and bootstrap both
           
 Step 3: 
+Restart ng serve
 NOTE: Whenever we does some changes we must restart ng serve
 </pre>
 
 <h3>Angular Bootstrap</h3>
 We have angular bootstrap website (https://ng-bootstrap.github.io/#/home).<br>
-There is also steps to insall it, We just have to use one command givenon the home page of the website and no need to add any module etc after executing the command start using the components given in angular bootstrap. The first command is for angular 9 and latest, if we want to use old one then there is another command is given.<br>
+There is also steps to insall it, We just have to use one command given on the home page of the website and it'll installed Add the code given in html and .ts as required. The first command is for angular 9 and latest, if we want to use old one then there is another command is given.<br>
 
 <h3>Adding Material UI</h3>
 https://material.angular.io/guide/getting-started<br>
 All material + commands given in doc.<br>
+When the command it'll ask for theme, choose theme, proceed. After successfully installation choose the component from material design and copy html and API related to it.<br>
 
-<h3>Components</h3>
+<a name="two"><h2>1.6 Components</h2></a><br>
 <b>Understanding the first component which we get after app creation</b><br>
 <li>We use components for specific task for example login component, sign up component etc.</li>
 <li>Reusable, for eg i have used navigation bar which is comon in every page, i can reuse this component in every page, like a function.</li>
@@ -138,20 +159,40 @@ app.component.ts: how the module work will come here.<br>
 app.component.spec.ts: usefull for testing purpose.<br>
 app.module.ts: entry point<br>
 
-<b>Adding new component</b><br>
 <b>Creating the component:</b><br>
 >ng generate component AllComponents/blog<br>
+
+This command will generate 4 files which is given above with blog name. Also, the blog component will be declared within AppModule declarations[].<br>
+
 AllComponent is the name of the folder for all the newly created component for my understanding, i can direcly use ng generate component blog this will create all files inside app root.<br>
 <b>Using this component:</b><br>
-1)If i want to add the newly created component inside the root app.component.html then see the component's .ts file, for the above component it is "app-blog" use this as a tag inside the app.component.html whereever we want "<app-blog></app-blog>".<br>
+1)If i want to add the newly created component inside the root app.component.html then see the component's .ts file there is one selector, for the above component it is "app-blog" use this as a tag inside the app.component.html whereever we want "&lt;app-blog&gt;&lt;/app-blog&gt;".<br>
 Whatever we make changes in component's html will reflect in main root's html file.<br>
 2)Right after creating the component the main root's app.module.ts will automatocally import component and declare in app.module.ts<br>
   
-The <app-root></app-root> in index.html will bring contents of app.component.html, app.component.html will contains the html of all component, it'll merge them and make one page.<br>
+The &lt;app-blog&gt;&lt;/app-blog&gt; in index.html will bring contents of component's, app.component.html will contains the html of all component, it'll merge them and make one page. Copy the selector tag and paste it in app/app.component.html not on component's html page.<br>
+<pre>
+Bsic metadata for AppComponent:
 
-copy the selector tag and paste it in app/app.component.html not on component's html page.<br>
-  
-<h1>Angular Interpolation</h1>
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+
+export class AppComponent {
+  title = 'my-app';
+}
+</pre>
+The @Component decorator indicates that the class below it as a component class, and specifies its metadata. In the example code below, you can see that AppComponent is just a class, with no special Angular notation or syntax at all. It's not a component until you mark it as one with the @Component decorator.<br>
+Every component has building blocks that it needs to create and present the component and its view. The metadata for a component tells Angular where to get these. Specially, the template which is the view is linked with component. Together, the component and its template describe a view. Additionally, it defines the styles for the component.
+NOTE: We can also create component manually by creating a blog folder and define that 4 files and directive, constructor inside the .ts file etc.<br>
+Also The templates can also be defned directly within ts file, instead of separate files. The styles also can be defined within the ts file.
+
+![com](https://user-images.githubusercontent.com/59610617/130065882-474cb056-49eb-4bbb-929c-6c9430a9f7eb.png)<br>
+
+
+<a name="eight"><h2>1.8 Angular Interpolation</h2></a><br>
 <li>If we want to take something from app.component.ts to app.component.html</li>
 <li>We cannot use let, var with variable name</li>
 <li>It is like a context we use in django. And this is called as interpolation.</li>
@@ -223,63 +264,64 @@ siteURL = window.location.href
 &lt;h1&gt;{{window.location.href}}&lt;/h1&gt;
 </pre>
 
-<h1>Module</h1>
-  
-![module](https://user-images.githubusercontent.com/59610617/129734692-ebc2f3ca-4039-4516-be26-8b41440ece45.png)<br>
-
-Module is the collection of components, services,pips, and directives, example a user module will contain user sign up, user profile, all the stuff related to user will come under one user module.<br>
-
-<b>To create module</b><br>
->ng generate module module_name
-Eg: >ng generate module users
-
-<b>Creating component inside the module users</b>
->ng generate component users/login          //if we don't use users/ it will by default create module inside the app folder.<br>
-
-<b>Using module's component</b><br>
+<a name="nine"><h2>1.9 Data Binding</h2></a><br>
+<h3>Property Binding</h3>
+property binding and interpolation is not same. It is used using [] and interpolation with {{}}. If a variable within the component is to be linked with text box or some other DOM element, we can use Property binding. It uses [ ] around the property which we need to bind and a variable with which the binding is to be done is mentioned in “” on right side. e.g. isdisabled is a Boolean variable declared within component, which determines if the button is disabled or enabled.<br>
+Example: 
 <pre>
-Step 1:
-Whatever we want to use we should export it inside the users.module.ts 
-Below the imports write:
-imports: [
-    CommonModule
-  ],
-  exports:[             //added by me
-    LoginComponent
-  ]
-  
-Step 2:
-inside the root's app-> app.module.ts file
-import and include inside the import
+property binding can handle the disable button whereas interplation cannot.
 
-import { UsersModule  } from './users/users.module';
+.ts
+export class AppComponent {
+  title = 'blog';
+  name="fareen";
+  disabledbox=true;
+  enable()
+  {
+    this.disabledbox = false;
+  }
+}
 
-imports: [
-    BrowserModule,
-    AppRoutingModule,
-    UsersModule               //added by me
-  ],
-  
-To use it inside the root's module html
-use the selector given component's .ts file
-for my app it is "app-login"
-
-.html of root's:
-&lt;app-login&gt;&lt;/app-login&gt;
-
-Now whatever is present inside the users/login component will come in html file
-
-Step 3: create signup module 
-now once we imported it non need to do it again, just export this inside the component's users.module.ts file
-exports:[
-    LoginComponent,
-    SignupComponent         //added by me
-  ]
-  
+.html
+&lt;input type="text" [disabled]="disabledbox" [value]="name"&gt; &lt;br&gt;
+&lt;input type="text" disabled={{disabledbox}} value={{name}}&gt; &lt;br&gt;
+&lt;button (click)="enable()"&gt;Enable&lt;/button&gt;
 </pre>
 
-<h3>How to call a function onclick of the function</h3>  
+<h3>Style Binding</h3>
+Difference between normals style and style binding.<br>
+if the data is coming from api or something and we want to give it color.<br>
+<pre>
+  &lt;h1 style="background-color:skyblue"&gt;dynamic binding&lt;/h1&gt;           //normal style
+  &lt;h1 [style.backgroundColor]=" 'green' "&gt;dynamic binding 2&lt;/h1&gt;      //style with binding
+  &lt;h1 [style.backgroundColor]="col"&gt;dynamic binding 3&lt;/h1&gt;            //style coming from .ts
+  
+Changing color on click of the button:
+.ts
+  color = ""
+  changecol(){
+      this.color = "pink"
+  }
+
+.html
+  &lt;h1 [style.backgroundColor]="color"&gt;dynamic binding 2&lt;/h1&gt;
+  &lt;br&gt;
+  &lt;button (click)="changecol()"&gt;dynamic binding 2&lt;/button&gt;
+  
+ 
+Conditional styling:
+.ts
+err=true;
+ 
+if there is error then color red else green
+ 
+.html
+&lt;h1 [style.backgroundColor]="err? 'red': 'green' "&gt;dynamic binding 2&lt;/h1&gt;
+</pre>
+
+<h3>How to call a function onclick of the function(Event binding)</h3>  
 When we create a button both the file(app.component.html(which will have button) and app.component.ts(which will have function)) should present inside the same component.<br>
+For binding events, parentheses are used around the event.<br>
 <pre>
 1)without parameter
 .ts file:
@@ -377,29 +419,68 @@ Get value on click of button
 &lt;button (click)="getName(box.value)"&gt;Get value&lt;/button&gt;
 &lt;h1&gt;{{curval}}&lt;/h1&gt;
 </pre>
+
+<h3>Two-way binding</h3>
+For two-way binding, a combination of square brackets and parentheses, [()]. The [()] syntax combines the brackets of property binding, [], with the parentheses of event binding, (), as follows.<br>
+&lt;input type="text" [(ngModel)]="username"&gt;<br>
+This syntax binds the valueof textbox to username variable declared within component. The data is bound from template to component and from component to template. Any change in username, in view or component will be reflected at both.</br>
+
+<a name="five"><h2>Module</h2></a><br>
   
-<h3>Property binding</h3>
-property binding and interpolation is not same. It is used using [] and interpolation with {{}}<br>
-Example: 
+![module](https://user-images.githubusercontent.com/59610617/129734692-ebc2f3ca-4039-4516-be26-8b41440ece45.png)<br>
+
+Module is the collection of components, services,pips, and directives, example a user module will contain user sign up, user profile, all the stuff related to user will come under one user module.<br>
+
+<b>To create module</b><br>
+>ng generate module module_name
+Eg: >ng generate module users
+
+<b>Creating component inside the module users</b>
+>ng generate component users/login          //if we don't use users/ it will by default create module inside the app folder.<br>
+
+<b>Using module's component</b><br>
 <pre>
-property binding can handle the disable button whereas interplation cannot.
+Step 1:
+Whatever we want to use we should export it inside the users.module.ts 
+Below the imports write:
+imports: [
+    CommonModule
+  ],
+  exports:[             //added by me
+    LoginComponent
+  ]
+  
+Step 2:
+inside the root's app-> app.module.ts file
+import and include inside the import
 
-.ts
-export class AppComponent {
-  title = 'blog';
-  name="fareen";
-  disabledbox=true;
-  enable()
-  {
-    this.disabledbox = false;
-  }
-}
+import { UsersModule  } from './users/users.module';
 
-.html
-&lt;input type="text" [disabled]="disabledbox" [value]="name"&gt; &lt;br&gt;
-&lt;input type="text" disabled={{disabledbox}} value={{name}}&gt; &lt;br&gt;
-&lt;button (click)="enable()"&gt;Enable&lt;/button&gt;
+imports: [
+    BrowserModule,
+    AppRoutingModule,
+    UsersModule               //added by me
+  ],
+  
+To use it inside the root's module html
+use the selector given component's .ts file
+for my app it is "app-login"
+
+.html of root's:
+&lt;app-login&gt;&lt;/app-login&gt;
+
+Now whatever is present inside the users/login component will come in html file
+
+Step 3: create signup module 
+now once we imported it non need to do it again, just export this inside the component's users.module.ts file
+exports:[
+    LoginComponent,
+    SignupComponent         //added by me
+  ]
+  
 </pre>
+
+
  
 <h3>Condition statements in angular</h3>  
 if condition
@@ -567,36 +648,7 @@ Three ways to give css:<br>
 2)style.css, which is already present in app folder. It is used for global css.<br>
 3)inside asserts create css files.<br>
 
-<h3>Style bindig in angular</h3>
-Difference between normals style and style binding.<br>
-if the data is coming from api or something and give it color.<br>
-<pre>
-  &lt;h1 style="background-color:skyblue"&gt;dynamic binding&lt;/h1&gt;           //normal style
-  &lt;h1 [style.backgroundColor]=" 'green' "&gt;dynamic binding 2&lt;/h1&gt;      //style with binding
-  &lt;h1 [style.backgroundColor]="col"&gt;dynamic binding 3&lt;/h1&gt;            //style coming from .ts
-  
-Changing color on click of the button:
-.ts
-  color = ""
-  changecol(){
-      this.color = "pink"
-  }
 
-.html
-  &lt;h1 [style.backgroundColor]="color"&gt;dynamic binding 2&lt;/h1&gt;
-  &lt;br&gt;
-  &lt;button (click)="changecol()"&gt;dynamic binding 2&lt;/button&gt;
-  
- 
-Conditional styling:
-.ts
-err=true;
- 
-if there is error then color red else green
- 
-.html
-&lt;h1 [style.backgroundColor]="err? 'red': 'green' "&gt;dynamic binding 2&lt;/h1&gt;
-</pre>
 
 <h3>Passing data from parent to child component</h3>
 <pre>
@@ -681,7 +733,7 @@ data=""
 &lt;h1&gt;{{data}}&lt;/h1&gt;
 </pre>
 
-<h3>Pipe in Angular</h3>
+<a name="ten"><h2>1.10 Pipes</h2></a><br>
 To format the data string etc we make use of pipe, Example if i want all names to be display in Title case then we need to make function etc, so to not make it hard just use pipe concept. It is like we use in django's | to make a string title case.
 <pre>
 .ts
@@ -713,6 +765,44 @@ cash = 10;
 .html
 {{cash | currency:'USD'}}         //$10.00
 </pre>
+
+<h3>Custom pipes</h3>
+Custom pipes can be created for transformations which are not provided with the built-in pipes. The custom pipe can be sued in template expressions, same as built-in pipes — to transform input values to output values for display.<br>
+Marking a class as a pipe<br>
+Pipe is a class, marked by @Pipe decorator with corresponding metadata.<br>
+For creating pipes, following steps need to be followed.<br>
+1.Create the class and mark with @Pipe decorator<br>
+2.Declare the pipe in AppModule<br>
+3.Use this pipe in template<br>
+<pre>
+Step 1:
+create a exponential-strength.pipe.ts file inside the app
+
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({name: 'exponentialStrength'})
+export class ExponentialStrengthPipe implements PipeTransform {
+  transform(value: number, exponent = 1): number {
+    return Math.pow(value, exponent);
+  }
+}
+
+.html
+&lt;h3&gt;{{2 | exponentialStrength: 10}}&lt;/h3&gt;
+
+Step 2:
+in app.module
+import { ExponentialStrengthPipe } from './exponential-strength.pipe';
+
+@NgModule({
+  declarations: [
+    ExponentialStrengthPipe
+  ],
+</pre>
+Output: 1024
+
+Every Pipe class must implement PipeTransform interface, making it compulsory to implement the transform(). The transform() takes one argument as value, which needs to be transformed. Additionally if required we can also pass additional parameters, to make pipe behave dynamically.<br>
+In the example above, the transform() checks the length of string variable and if its more than 50, the string is shortened and returned and if the length is less than or equal to 50, then the string is returned as it is. To use this pipe within the template, the name declared within metadata is used.<br>
 
 <h3>Routing</h3>
 If you didn't select routing option on the project creating time then we can make use for this command to add it in the project:<br>
