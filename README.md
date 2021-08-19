@@ -1076,17 +1076,73 @@ Now bootstrap added start using the bootstrap from there official website.<br>
 <h3>Angular reactive form validation</h3>
 <pre>
 Step 1: import reactive form
+component.ts
 import { ReactiveFormsModule } from '@angular/forms';
  imports: [
     ReactiveFormsModule
   ],
   
- Step 2:
+Step 2:
+.html
+Add a bootstrap form or make one
  
- PENDING
+Step 3
+component.ts
+                                 //for valiation without it we can't use validation
+import { FormControl, FormGroup, Validators} from '@angular/forms';
+
+export class AppComponent {
+  //name of the form
+  LoginForm = new  FormGroup({
+    email:new FormControl('',Validators.required),      //must be same as name of the input given in form 
+    password:new FormControl('')
+  })
+}
+
+ .html: give form a name
+ <form [formGroup]="LoginForm">
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="email">
+    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1"  formControlName="password">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+ 
+ formGroup name     //form name 
+ formControlName    //filed name 
+ rest all are same bootstrap class
+ 
+Now to check if the validation is applied or not on inspect of this form on browser, if the form is black it'll give ng-invalid, when we fill this input it'll show ng-valid
+ 
+Apply css to know if it is valid or invalid
+.css
+input.ng-invalid{
+    border-left: 5px solid red;
+}
+input.ng-valid{
+    border-left: 5px solid green;
+}
+
+Now we can see if the filed is empty it'll show red line on left side of input and vanish as long as we fill the form. An if it is valid we can see green color
+ 
+TO GET TEXT WHEN THE EMAIL IS NOT FILLED
+.ts
+get email() {
+    return this.LoginForm.get('email')
+  }
+  
+.html : below the email field include this line
+ <span class="text-danger" *ngIf="email?.invalid && (email?.dirty || email?.touched)">Email cannot be empty</span>
+ 
+If the email is touched and it is invalid then below the field we'll get the message email cannot be empty when we touched the email filed and clicked outside.
 </pre>
 
-
+<h3>Add validation in angular form</h3>
 
 
 
