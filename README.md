@@ -639,7 +639,46 @@ now if we have lots of data then useing for loop we can make this component reus
 
 <h3>Passing data from child to parent component</h3>
 <pre>
-PENDING
+we'll create a child component userlist and use this component in app's component with the help of EventEmitter(basically used to send data from child to parent)
+
+we'll create a function in parent and that function we'll call from child, so that child component can transfer data to parent component
+
+Step 1:
+app's .html
+<h1>passing data form child to parent</h1>
+<app-userlist (parentComponent)="parentComponent($event)"></app-userlist>
+
+app's .ts
+export class AppComponent {
+    parentComponent(data: any){
+      console.log(data)
+    }
+}
+
+Step 2:
+userlist's component.ts
+                            //added by me
+import { Component, OnInit, Output, EventEmitter } 
+
+export class UserlistComponent implements OnInit {
+
+  @Output() parentComponent: EventEmitter<any> = new EventEmitter
+  constructor() { }
+
+  ngOnInit(): void {
+    this.parentComponent.emit("hello");        //or pass ({name:'fareen'})   
+  }
+}
+
+Now whatever we pass from emit() function will be visible in in app's .html file
+Or inside the parent component we can directly use 
+app's .ts
+data=""
+    parentComponent(data: any){
+      this.data=data;
+    }
+    
+&lt;h1&gt;{{data}}&lt;/h1&gt;
 </pre>
 
 <h3>Pipe in Angular</h3>
@@ -1049,10 +1088,63 @@ Step 3:
 &lt;a routerLink="user/list"&gt;List&lt;/a&gt;&lt;br&gt;&lt;br&gt;
 &lt;router-outlet&gt;&lt;/router-outlet&gt;
 
+Don't forget to import both modules in app.module.ts
+import { AdminModule } from './admin/admin.module';
+import { UsersModule } from './users/users.module';
 </pre>
+How do we know the lazy loading works go to admin.module.ts and after import write:<br>
+console.log(Admin module")<br>
+Every console log print when the page loads, but this one will work when we click on the admin module and only once.<br>
 
 <h3>Lazy loading component</h3>
-PENDING
+On click of that particular component that will only work
+<pre>
+In this case we need to create two component not the module.
+userlist & adminlist
+
+Step 1: app.component.ts
+                    //added by me
+import { Component, ViewContainerRef, ComponentFactoryResolver
+
+export class AppComponent {
+  constructor(private viewContainer: ViewContainerRef,
+    private cfr:ComponentFactoryResolver){}
+    async loadAdmin(){
+      this.viewContainer.clear()    //clear if any component present
+      const {AdminlistComponent} = await import('./adminlist/adminlist.component')
+      this.viewContainer.createComponent(
+        this.cfr.resolveComponentFactory(AdminlistComponent)
+      )
+    }
+
+    async loadUser(){
+      this.viewContainer.clear()    //clear if any component present
+      const {UserlistComponent} = await import('./userlist/userlist.component')
+      this.viewContainer.createComponent(
+        this.cfr.resolveComponentFactory(UserlistComponent)
+      )
+    }
+}
+
+//ViewContainerRef: will create a container in which our component load like div
+//ComponentFactoryResolver: convert the dynamic code into component.
+
+Step 2:
+app.component.html
+&lt;button (click)="loadAdmin()"&gt;Load Admin&lt;/button&gt;
+&lt;button (click)="loadUser()"&gt;Load User&lt;/button&gt;
+
+</pre>
+How this works:
+if we have any component is present, clear it. Example when we click on adminlist there is admin list present in the container, if we need user list we'll click on button and function on that button will clear the admin component for user list component to load and create component will create component.<br>
+Now even if we have 1000 component they wont load together. They'll load only whne they need meaning on click of the button.<br>
+Check if they load on click of the button on admin componen.ts inside the constructor pass a console log.<br>
+<pre>
+constructor() {
+    console.log("Admin loaded")
+   }
+</pre>
+This won't load on first the page is loaded when we click the button "Admin loaded" will print on console.<br>
 
 <h3>Forms Intro</h3>
 Types:1) Reactive form(control data in component.ts file) 2)Template drivern(control data in component.html file).<br>
@@ -1076,11 +1168,11 @@ imports: [
   ],
   
 app's .html
-<form #simpleForm = "ngForm" (ngSubmit) = "getUserValue(simpleForm.value)">
-    Name:<input type="text" ngModel name="username"><br><br>
-   Password:<input type="text" ngModel name="password"><br><br>
-    <button>Get Values</button>
-</form>
+&lt;form #simpleForm = "ngForm" (ngSubmit) = "getUserValue(simpleForm.value)"&gt;
+    Name:&lt;input type="text" ngModel name="username"&gt;&lt;br&gt;&lt;br&gt;
+   Password:&lt;input type="text" ngModel name="password">&lt;br&gt;&lt;br&gt;
+    &lt;button&gt;Get Values&lt;/button&gt;
+&lt;/form&gt;
 
 Here id is simpleForm 
 onSubmit we have to give function
@@ -1120,18 +1212,18 @@ export class AppComponent {
 }
 
  .html: give form a name
- <form [formGroup]="LoginForm">
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="email">
-    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1"  formControlName="password">
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+ &lt;form [formGroup]="LoginForm"&gt;
+  &lt;div class="mb-3"&gt;
+    &lt;label for="exampleInputEmail1" class="form-label"&gt;Email address&lt;/label&gt;
+    &lt;input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="email"&gt;
+    &lt;div id="emailHelp" class="form-text"&gt;We'll never share your email with anyone else.&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="mb-3"&gt;
+    &lt;label for="exampleInputPassword1" class="form-label"&gt;Password&lt;/label&gt;
+    &lt;input type="password" class="form-control" id="exampleInputPassword1"  formControlName="password"&gt;
+  &lt;/div&gt;
+  &lt;button type="submit" class="btn btn-primary"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
  
  formGroup name     //form name 
  formControlName    //filed name 
@@ -1163,11 +1255,82 @@ If the email is touched and it is invalid then below the field we'll get the mes
 </pre>
 
 <h3>Add validation in angular form</h3>
+<pre>
+app's .ts file
+import { FormsModule } from '@angular/forms';
 
+Step 1:
+app's .html file
+&lt;h1&gt;Adding form validation&lt;/h1&gt;
+&lt;form form #userForm="ngForm" (ngSubmit)="onSubmit(userForm.value)"&gt;
+  &lt;div class="mb-3"&gt;
+    &lt;label for="exampleInputEmail1"&gt;Email address&lt;/label&gt;
+    &lt;input type="email" id="exampleInputEmail1" name="useremail" ngModel #email="ngModel" required&gt;
+ &lt;/div&gt;
+  &lt;div class="mb-3"&gt;
+    &lt;label for="exampleInputPassword1">Password&lt;/label&gt;
+    &lt;input type="password" id="exampleInputPassword1" name="userpassword" ngModel&gt;
+  &lt;/div&gt;
+  &lt;button type="submit"&gt;Submit&lt;/button&gt;
+  &lt;/form&gt;
+  
+Step 2:
+app's .ts file
+   onSubmit(data: any){
+      console.log(data);
+    }
+ 
+Step 3:
+app's .css
+input.ng-valid{
+    border-left: 5px solid green;
+}
 
+input.ng-invalid{
+    border-left: 5px solid red;
+}
 
+Now on first load the first filed which in we have given validation will be red cuz it is required when we fill data it'll change to green
 
+Adding the reguired filed below the input box:
 
+//this must be visible only when we touched the filed not on page load
+//Add this below email input
+&lt;span class="error" *ngIf="email.invalid && email.touched"&gt;Email cannot be blank!!&lt;/span&gt;
+
+</pre>
+
+<h3>Prefilled form</h3>
+<pre>
+Step 1: import in app's module.ts
+import { FormsModule } from '@angular/forms';
+
+Step 2:
+app's .html
+&lt;h1&gt;Pre filled form example&lt;/h1&gt;
+&lt;form form #userForm="ngForm" &gt;
+  &lt;div class="mb-3"&gt;
+    &lt;label for="exampleInputEmail1"&gt;Email address&lt;/label&gt;
+    &lt;input type="email" id="exampleInputEmail1" name="email"  [ngModel]="userData.email"&gt;
+&lt;/div&gt;
+  &lt;div class="mb-3"&gt;
+    &lt;label for="exampleInputPassword1"&gt;Password&lt;/label&gt;
+    &lt;input type="password" id="exampleInputPassword1" name="password" [ngModel]="userData.password"&gt;
+  &lt;/div&gt;
+  
+  &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+We bind the ngModel with userData 
+
+Step 3:
+app's .ts
+   userData = {
+      email:"hello@world",
+      password:"123abc"
+    };
+</pre>
+
+<h3>Reactive Form</h3>
 
 
 
