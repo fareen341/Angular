@@ -1013,22 +1013,42 @@ Lazy loading basically apply on routing.<br>
 Whenever we load a page then if we have 1000 pages all will load together which make the website slow, in case of lazy loading only the page we need will load this increase the speed and improve the performance.<br>
 NOTE: In the above example we were importing the admin and users inside the app.module.ts, But in this case we don't do that.<br>
 <pre>
-router.ts file of admin
+Step 1: in admin routing file add
+import { LoginComponent } from './login/login.component';
+import { ListComponent } from './list/list.component';
+
 const routes: Routes = [
-  //this will run only when we need this
-  {
-    path:'admin' , loadChildren:()=>import('./admin.module').then(mod=>mod.AdminModule)
-  }
+
+  {path:'login', component:LoginComponent},
+  {path:'list', component:ListComponent},
 ];
 
+Do same for user module too same.
+
+Step 2: in app's routing file
+const routes: Routes = [
+{
+  //this will run only when we need this
+  path:'admin' , loadChildren:()=>import('./admin/admin.module').then(mod=>mod.AdminModule)
+},
+
+{
+  path:'user' , loadChildren:()=>import('./users/users.module').then(mod=>mod.UsersModule)
+}
+];
+
+Step 3:
+
 .html
-&lt;h1&gt;Link coming from the module's page&lt;/h1&gt;
 &lt;h1&gt;Admin Stuff&lt;/h1&gt;
-&lt;a routerLink="admin/AdminLogin"&gt;Login&lt;/a&gt;&lt;br&gt;&lt;br&gt;
-&lt;a routerLink="admin/AdminList"&gt;List&lt;/a&gt;&lt;br&gt;&lt;br&gt;
+&lt;a routerLink="admin/login"&gt;Login&lt;/a&gt;&lt;br&gt;&lt;br&gt;
+&lt;a routerLink="admin/list"&gt;List&lt;/a&gt;&lt;br&gt;&lt;br&gt;
+
+&lt;h1&gt;User Stuff&lt;/h1&gt;
+&lt;a routerLink="user/login"&gt;Login&lt;/a&gt;&lt;br&gt;&lt;br&gt;
+&lt;a routerLink="user/list"&gt;List&lt;/a&gt;&lt;br&gt;&lt;br&gt;
 &lt;router-outlet&gt;&lt;/router-outlet&gt;
 
-PENDING
 </pre>
 
 <h3>Lazy loading component</h3>
