@@ -18,6 +18,12 @@
 
 [<h2>1.9 Data Binding</h2>](#nine)
 
+<li>Property binding</li>
+<li>Style binding</li>
+<li>Event binding(Calling a function onclick of the event)</li>
+<li>Events</li>
+<li>Two way binding</li>
+
 [<h2>1.10 Pipes</h2>](#ten)
 
 [<h2>1.11 Component Communication</h2>](#eleven)
