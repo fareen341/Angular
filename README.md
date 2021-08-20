@@ -183,7 +183,7 @@ https://material.angular.io/guide/getting-started<br>
 All material + commands given in doc.<br>
 When the command it'll ask for theme, choose theme, proceed. After successfully installation choose the component from material design and copy html and API related to it.<br>
 
-<a name="two"><h2>1.6 Components</h2></a><br>
+<a name="six"><h2>1.6 Components</h2></a><br>
 <b>Understanding the first component which we get after app creation</b><br>
 <li>We use components for specific task for example login component, sign up component etc.</li>
 <li>Reusable, for eg i have used navigation bar which is comon in every page, i can reuse this component in every page, like a function.</li>
@@ -517,7 +517,7 @@ exports:[
 </pre>
 
 
-<a name="eighteen"><h2>1.18 Typescript</h2></a><br>
+<a name="nineteen"><h2>1.19 Typescript</h2></a><br>
 <h3>Condition statements in angular</h3>  
 if condition
 <pre>
