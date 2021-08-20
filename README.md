@@ -19,6 +19,42 @@
 [<h2>1.9 Data Binding</h2>](#nine)
 
 [<h2>1.10 Pipes</h2>](#ten)
+
+[<h2>1.11 Component Communication</h2>](#eleven)
+
+[<h2>1.12 Service</h2>](#twelve)
+
+[<h2>1.13 API Call</h2>](#thirteen)
+
+[<h2>1.14 Interface(Model)</h2>](#fourteen)
+
+[<h2>1.15 Routing</h2>](#fifteen)
+
+<li>Routing Module</li>
+<li>Group Routing</li>
+
+[<h2>1.16 Lazy Loading</h2>](#sixteen)
+
+<li>Lazy Loading</li>
+<li>Lazy Loading Component</li>
+
+[<h2>1.17 Forms</h2>](#seventeen)
+
+<li>Form introduction</li>
+<li>Simple Form</li>
+<li>Template driven from</li>
+<li>Adding validation in template driven form</li>
+<li>Reactive form with validation</li>
+<li>Pre-filled form</li>
+
+[<h2>1.19 Typescript in angular</h2>](#nineteen)
+
+<li>Conditional statement</li>
+<li>Switch case</li>
+<li>For loop</li>
+
+
+
 <hr>
 <a name="one"><h2>1.1 Course Description</h2></a><br>
 Angular is developed by google. Angular is new, angularjs is old. Open source web application framework led by the angular team at google. Mostly ppl use npm not the cdn like in jquery. Angular JS (Angular 1.0.0) was JS framework, developed in JS. It implemented MVC architecture. Angular ( all versions from 2 onwards), was a complete rewrite of Angular using TS. Documentation : https://angular.io/tutorial <br>
@@ -425,7 +461,7 @@ For two-way binding, a combination of square brackets and parentheses, [()]. The
 &lt;input type="text" [(ngModel)]="username"&gt;<br>
 This syntax binds the valueof textbox to username variable declared within component. The data is bound from template to component and from component to template. Any change in username, in view or component will be reflected at both.</br>
 
-<a name="five"><h2>Module</h2></a><br>
+<a name="five"><h2>1.5 Module</h2></a><br>
   
 ![module](https://user-images.githubusercontent.com/59610617/129734692-ebc2f3ca-4039-4516-be26-8b41440ece45.png)<br>
 
@@ -481,7 +517,7 @@ exports:[
 </pre>
 
 
- 
+<a name="eighteen"><h2>1.18 Typescript</h2></a><br>
 <h3>Condition statements in angular</h3>  
 if condition
 <pre>
@@ -614,42 +650,10 @@ stud = [
 &lt;/table&gt;
 </pre>
   
-<h3>Simple Form</h3>
-<pre>
-Step 1: import in .ts file
-import { FormsModule } from '@angular/forms';
-
-imports: [
-    CommonModule,
-    FormsModule         //added by me
-  ],
-  
-Step 2:
-.ts file
-getUserValue(value : any){
-    console.log(value)
-  }
-
-.html
-&lt;form #simpleForm = "ngForm" (ngSubmit) = "getUserValue(simpleForm.value)"&gt;
-    Name:&lt;input type="text" ngModel name="username"&gt;&lt;br&gt;&lt;br&gt;
-   Password:&lt;input type="text" ngModel name="password"&gt;&lt;br&gt;&lt;br&gt;
-    &lt;button&gt;Get Values&lt;/button&gt;
-</form>
-
 ngModel will tell the forms are connected
 </pre>
 
-<h3>Creating header and footer in angular</h3>
-Common header and footer<br>
-Create two component header and footer design it using css<br>
-Three ways to give css:<br>
-1)inside component's css.<br>
-2)style.css, which is already present in app folder. It is used for global css.<br>
-3)inside asserts create css files.<br>
-
-
-
+<a name="eleven"><h2>1.11 Component Communication</h2></a><br>
 <h3>Passing data from parent to child component</h3>
 <pre>
 Step 1: create child component
@@ -686,18 +690,16 @@ stud = {
 {{stud.name}}
 
 Making a component reusable
-now if we have lots of data then useing for loop we can make this component reusable
+now if we have lots of data then using for loop we can make this component reusable
 </pre>
 
 <h3>Passing data from child to parent component</h3>
 <pre>
 we'll create a child component userlist and use this component in app's component with the help of EventEmitter(basically used to send data from child to parent)
-
 we'll create a function in parent and that function we'll call from child, so that child component can transfer data to parent component
 
 Step 1:
 app's .html
-<h1>passing data form child to parent</h1>
 <app-userlist (parentComponent)="parentComponent($event)"></app-userlist>
 
 app's .ts
@@ -892,8 +894,8 @@ import { Directive, ElementRef }
  &lt;h1 appCustomstyle>Custom heading&lt;/h1&gt;
 </pre>
 
-<h3>Service in angular</h3>
-It is used to share data between two to three component, example we want to show user data between 2-3 component. And it is not conmponent and module dependent.
+<a name="twelve"><h2>1.12 Service</h2></a><br>
+It is used to share data between two to three component, example we want to show user data between 2-3 component. And it is not conmponent and module dependent. A component can delegate common functionalities to services, such as fetching data from the server, validating user input, or logging directly to the console. Service class thus can provide all these to various components.
 <pre>
 Step 1:
 >ng g service usersData
@@ -923,7 +925,8 @@ app.component.ts
 
 </pre>
 
-<h3>API call</h3>
+
+<a name="thirteen"><h2>1.13 API cal</h2></a><br>
 Api is called with service, so we we'll create service. Angulr is UI development so it can't directly call the database so we need API to interact with data.
 <pre>
 users.data.services.ts
@@ -999,6 +1002,8 @@ app.component.html
 &lt;/table&gt;
 </pre>
 
+
+<a name="fourteen"><h2>1.14 Interface(model)</h2></a><br>
 <h3>Model in angular</h3>
 It define data structure. It'll tell what data is belongs to which data type, It does the data validation. It is part of typescript.
 <pre>
@@ -1055,6 +1060,7 @@ export class AppComponent {
 }
 </pre>
 
+<a name="fifteen"><h2>1.15 Routing</h2></a><br>
 <h3>Routing Module</h3>
 Example every module has it's own routing. When we go on specific UI module the routing related to that module will be load at that time. Example Admin and User module. So when we access admin then users rout will not be loaded and vice versa, so that speed of our application will increase
 <pre>
@@ -1136,7 +1142,9 @@ Step 3:
 &lt;hr&gt;
 </pre>
 
-<h3>Lazy loading in angular</h3>
+
+<a name="sixteen"><h2>1.16 Lazy Loading</h2></a><br>
+<h3>Lazy loading</h3>
 What is the difference between normal loading and lazy loading?<br>
 Lazy loading basically apply on routing.<br>
 Whenever we load a page then if we have 1000 pages all will load together which make the website slow, in case of lazy loading only the page we need will load this increase the speed and improve the performance.<br>
@@ -1236,6 +1244,7 @@ constructor() {
 </pre>
 This won't load on first the page is loaded when we click the button "Admin loaded" will print on console.<br>
 
+<a name="seventeen"><h2>1.17 Forms</h2></a><br>
 <h3>Forms Intro</h3>
 Types:1) Reactive form(control data in component.ts file) 2)Template drivern(control data in component.html file).<br>
 They both have validation and handling data is slight different in both.<br>
@@ -1244,6 +1253,30 @@ They both have validation and handling data is slight different in both.<br>
 
 <b>Data flow work</b><br>
 Form -> .ts file ->service(call api and transfer data to server) -> server<br>
+
+
+<h3>Simple Form</h3>
+<pre>
+Step 1: import in .ts file
+import { FormsModule } from '@angular/forms';
+
+imports: [
+    CommonModule,
+    FormsModule         //added by me
+  ],
+  
+Step 2:
+.ts file
+getUserValue(value : any){
+    console.log(value)
+  }
+
+.html
+&lt;form #simpleForm = "ngForm" (ngSubmit) = "getUserValue(simpleForm.value)"&gt;
+    Name:&lt;input type="text" ngModel name="username"&gt;&lt;br&gt;&lt;br&gt;
+   Password:&lt;input type="text" ngModel name="password"&gt;&lt;br&gt;&lt;br&gt;
+    &lt;button&gt;Get Values&lt;/button&gt;
+</form>
 
 <h3>Template driver form</h3>
 If we want to make any basic form then we use this one.
@@ -1274,6 +1307,52 @@ Just insatall the bootstrap using:<br>
 >ng add @ng-bootstrap/schematics<br>
 No need to add,import anything else. Restart ng serve<br>
 Now bootstrap added start using the bootstrap from there official website.<br>
+
+<h3>Add validation in template driven form</h3>
+<pre>
+app's .ts file
+import { FormsModule } from '@angular/forms';
+
+Step 1:
+app's .html file
+&lt;h1&gt;Adding form validation&lt;/h1&gt;
+&lt;form form #userForm="ngForm" (ngSubmit)="onSubmit(userForm.value)"&gt;
+  &lt;div class="mb-3"&gt;
+    &lt;label for="exampleInputEmail1"&gt;Email address&lt;/label&gt;
+    &lt;input type="email" id="exampleInputEmail1" name="useremail" ngModel #email="ngModel" required&gt;
+ &lt;/div&gt;
+  &lt;div class="mb-3"&gt;
+    &lt;label for="exampleInputPassword1">Password&lt;/label&gt;
+    &lt;input type="password" id="exampleInputPassword1" name="userpassword" ngModel&gt;
+  &lt;/div&gt;
+  &lt;button type="submit"&gt;Submit&lt;/button&gt;
+  &lt;/form&gt;
+  
+Step 2:
+app's .ts file
+   onSubmit(data: any){
+      console.log(data);
+    }
+ 
+Step 3:
+app's .css
+input.ng-valid{
+    border-left: 5px solid green;
+}
+
+input.ng-invalid{
+    border-left: 5px solid red;
+}
+
+Now on first load the first filed which in we have given validation will be red cuz it is required when we fill data it'll change to green
+
+Adding the reguired filed below the input box:
+
+//this must be visible only when we touched the filed not on page load
+//Add this below email input
+&lt;span class="error" *ngIf="email.invalid && email.touched"&gt;Email cannot be blank!!&lt;/span&gt;
+
+</pre>
 
 <h3>Angular reactive form validation</h3>
 <pre>
@@ -1344,52 +1423,6 @@ get email() {
 If the email is touched and it is invalid then below the field we'll get the message email cannot be empty when we touched the email filed and clicked outside.
 </pre>
 
-<h3>Add validation in angular form</h3>
-<pre>
-app's .ts file
-import { FormsModule } from '@angular/forms';
-
-Step 1:
-app's .html file
-&lt;h1&gt;Adding form validation&lt;/h1&gt;
-&lt;form form #userForm="ngForm" (ngSubmit)="onSubmit(userForm.value)"&gt;
-  &lt;div class="mb-3"&gt;
-    &lt;label for="exampleInputEmail1"&gt;Email address&lt;/label&gt;
-    &lt;input type="email" id="exampleInputEmail1" name="useremail" ngModel #email="ngModel" required&gt;
- &lt;/div&gt;
-  &lt;div class="mb-3"&gt;
-    &lt;label for="exampleInputPassword1">Password&lt;/label&gt;
-    &lt;input type="password" id="exampleInputPassword1" name="userpassword" ngModel&gt;
-  &lt;/div&gt;
-  &lt;button type="submit"&gt;Submit&lt;/button&gt;
-  &lt;/form&gt;
-  
-Step 2:
-app's .ts file
-   onSubmit(data: any){
-      console.log(data);
-    }
- 
-Step 3:
-app's .css
-input.ng-valid{
-    border-left: 5px solid green;
-}
-
-input.ng-invalid{
-    border-left: 5px solid red;
-}
-
-Now on first load the first filed which in we have given validation will be red cuz it is required when we fill data it'll change to green
-
-Adding the reguired filed below the input box:
-
-//this must be visible only when we touched the filed not on page load
-//Add this below email input
-&lt;span class="error" *ngIf="email.invalid && email.touched"&gt;Email cannot be blank!!&lt;/span&gt;
-
-</pre>
-
 <h3>Prefilled form</h3>
 <pre>
 Step 1: import in app's module.ts
@@ -1420,22 +1453,11 @@ app's .ts
     };
 </pre>
 
-<h3>Reactive Form</h3>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<h3>Creating header and footer in angular</h3>
+Common header and footer<br>
+Create two component header and footer design it using css<br>
+Three ways to give css:<br>
+1)inside component's css.<br>
+2)style.css, which is already present in app folder. It is used for global css.<br>
+3)inside asserts create css files.<br>
 
