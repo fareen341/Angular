@@ -1067,6 +1067,9 @@ export class AppComponent {
 </pre>
 
 <a name="fifteen"><h2>1.15 Routing</h2></a><br>
+<h3>what is SPA?</h3>
+Angular applications are Single Page Application (SPA). There is only one HTML document in the application, and all of the application's functions exist in this single HTML page. As users access the application's features, the browser needs to render only the parts that matter to the user (specific components), instead of loading a new page. This pattern can significantly improve the application's performance and the user experience.<br>
+
 <h3>Routing Module</h3>
 Example every module has it's own routing. When we go on specific UI module the routing related to that module will be load at that time. Example Admin and User module. So when we access admin then users rout will not be loaded and vice versa, so that speed of our application will increase
 <pre>
