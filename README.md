@@ -67,12 +67,55 @@ Angular is developed by google. Angular is new, angularjs is old. Open source we
 
 What is Angular? <br>
 Angular is an open-source, JavaScript framework written in TypeScript. Angular is a framework for building web applications, both large and small scale. You can build a full‑featured enterprise‑level product management and inventory application or anything in between. Now before diving into Angular framework let’s understand why it is called a framework and what is the difference between a normal library and a framework. <br>
+It is clint-side application, if we want to add database then we need the server in between.<br>
 
 Framework vs Library <br>
 The basic difference lies in a term called Inversion of Control. When you use a library, you are in charge of the application flow. You choose when and where to call the functions of that library. When you use a framework, the framework is in charge of the flow. The framework has a predefined structure where you write a code. In a nutshell, you tell libraries what to do, frameworks tell you what to do. Obviously the framework provides a lot more features than this. <br>
 
 Advantages of Angular<br> 
 1)We can create single page application <br>
+2)Expressive HTML.<br>
+2)Powerful data binding: one way binding, two way binding.<br>
+3)Modular by design.<br>
+4)Built-in back end integration: we don't need to install any package, we can directly call the rest API.<br>
+5)Detailed documenatation.<br>
+6)Great CLI support.<br>
+7)Ivy Renderer: build size reduced. As in normal hello world application reduced to 10-14kb.<br>
+8)We can create PWS(Progressive web apps) apps. Like we can install and create shortcut like app.<br>
+
+Javascript language specification?<br>
+ECMSScript 2015(formerly known as ES 6)--> arrow function, classes, & interface etc, modern browser does'nt fully support ES 6. So our code must be transpiled to ES 5. This is limitation of javascript, that's why typescript come. These all feature support in TypeScrip.<br>
+Typescript has strong typing: run time error we'll know at compiletime where as in javascript will show that error at runtime.<br>
+But browser does'nt understand typescript, browser only understand javascript. So to run typescript we've to convert it into ES 5 version and typescript will ceate a compatible code and that will run in all browers.<br>
+<br>
+To check how the typescript compiler will convert the advance javascript.<br>
+
+![index](https://user-images.githubusercontent.com/59610617/130343034-9aac7e7b-6ab0-4492-9704-bf2fbf45b5a3.png)<br>
+
+![ts file](https://user-images.githubusercontent.com/59610617/130343038-e8ec38ad-2fae-44a8-9d41-20103ef725e3.png)<br>
+
+NOTE: to run the type script we need to install typescript <br>
+For Executing: tsc.index.html<br>
+Right after this command typescript will create a javascript file which browser will understand.<br>
+
+![js](https://user-images.githubusercontent.com/59610617/130343046-e032d2af-93af-4cf9-a486-a3dc90c4d1b2.png)<br>
+
+Or in the typescript website we can runsand check the js file
+<pre>
+const customer1 = new Customer()      //have customer type.
+
+Explicit type:
+let a: string;
+
+Implicit type:
+let a;      //if we hover over it it has any type, so i can assign any value to it.
+
+let a=11;       //now the type is number 
+a = 'hello'     //will give error
+
+Giving multiple types 
+let a: string | number;       //it can be string or number
+</pre>
 
 <a name="two"><h2>1.2 INTRODUCTION</h2></a><br>
 <b>Installation</b><br>
@@ -108,7 +151,8 @@ NOTE: if the option is in uppercase as in Y or N then the npm is recommending th
 From all the folders we'll work 90% on src cuz that will convert our angular source code. index.html is the entry point
 
 To run the project on browser we use:<br>
->ng server
+>ng serve         
+>ng serve -o    //-o to open automatically on browser
 
 <a name="four"><h2>1.4 Files/Folders in Apps explain?</h2></a><br>
 <pre>
