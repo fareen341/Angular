@@ -920,7 +920,19 @@ We can design this page
 Now for any page which is not there if user hit that page it'll show page not fount and not give the error. Example link http://localhost:4200/follow  will show page not found.
 </pre>
 
-<h3>Custom directive</h3>
+<a name="twenty"><h2>1.20 Directive</h2></a><br>
+<h3>Built-in attribute directives</h3>
+<pre>
+PENDING
+</pre>
+<h3>Component Directive</h3>
+They are the directives with a template. This type of directive is the most common directive type.<br>
+<h3>Attribute directives</h3>
+They are the directives which change the appearance or behaviour of an element, component, or another directive.<br>
+<h3>Structural directives</h3>
+They are the directives which change the DOM structure by adding and removing DOM elements.<br>
+
+<h3>Custom Directive</h3>
 Used to manupulate DOM & HTML. Example, ngfor loop, switch etc
 <pre>
 Step 1:
