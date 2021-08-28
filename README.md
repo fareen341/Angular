@@ -157,7 +157,10 @@ To run the project on browser we use:<br>
 <a name="four"><h2>1.4 Files/Folders in Apps explain?</h2></a><br>
 <pre>
 FILES
-these files are given in itvedant's anatomy of angular application
+these files are given in itvedant's anatomy of angular application.
+Every file which has spec is the testing file 
+for vs code(eslint and tslint) extension
+
 1)package.json:
 the first file which is created, it contain the ng commands etc.
 if we want to add example a google map then we add it inside the defDepedencies.
@@ -166,7 +169,7 @@ if we want to add example a google map then we add it inside the defDepedencies.
 all the depedencies and dev-dependencies which are present in package.json are installed inside the node_module.
 
 3)index.html:
-Entry point for html, this will load first.
+Entry point for html, this will load first. If we see inside the inspect-> network section the things whic loaded will be same but the another page css, favicon will get added at the end. First loaded will be same.
 
 4)main.js:
 javascript's first file which loads first.
@@ -178,8 +181,7 @@ FOLDERS
 1)src:
 90% of code we'll do inside this one.
 
-2)app: this is the root module, which can contains module or component:
-component vs module?
+2)app: this is the root module, which can contains module or component
 
 component: is a small functionality which will have only one component.
 module: is  a big functionality example user, so it'll have user login, sign up etc. 
@@ -189,14 +191,30 @@ this is basically used for urls like we use urls.py in django.
 
 FILES ADVANCE:
 1)editorconfig: it basically contains the settings of editor like vscode etc.
+
 2)karma.config: used for unit testing
+
 3)package.lock.json: it keeps log files of package.json, example we have animation, so all 4)the verstions, packages intsalled which stored in package.lock.json.
+
 5)tslink: tells us about where to use let, const, var, arrow function etc.
+
 6)typescript files:
 i)tsconfig.spec.json: for testing configuration
 ii)tsconfig.base.json: contains the code suggestion like we get indentations in code editor etc
-iii)tsconfig.app.json: contains configuration file of our app.
+iii)tsconfig.app.json: contains configuration file of our app. Our application can have many  application each will have seperate this file.
+iv)tsconfig: for entire application
+
 7)e2e folder: end to end testing, used for testing.
+
+8)angular.json: we give like build for js, css etc, inside build index,main are the entry point.
+
+9)test.ts: entry point for testing file
+
+10)favicon: the icon we see besides the title, we can change it using our own icon.
+
+11)assets: we can keep images, doc, pdf, video, audio, font files etc. These files are publicly available. Example we create a html file inside it and we try to access it assets/test.html it'll be accessable, but inside app folder the files are not accessable eg if we use app.component.html in browser we won't be able to access it directly.
+
+13)main.ts: this is entry point for application, if we delete all files in app we'll get error in main.ts
 </pre>
 
 <a name="seven"><h2>1.7 Adding bootstrap</h2></a><br>
@@ -1525,4 +1543,37 @@ Three ways to give css:<br>
 1)inside component's css.<br>
 2)style.css, which is already present in app folder. It is used for global css.<br>
 3)inside asserts create css files.<br>
+
+<h1>include</h1>
+to make it public then use export and import where need
+@
+ngModule({
+  declarations: [],  // All components, directives & pipes
+  exports: [],  //All components, directives, pipes that can be used by other modules
+  imports: []    //All components, directives, pipes and modules  that can be used by this module
+ //All component  bootstrap: []   // will only be included in root module only
+})
+
+To make it component give @component directive
+@Component({
+    selector: 'app-root'   //should be unique
+    templates: 'Hello world'
+})
+
+we can use same selector many times, as in amazon has same component recent product, new products etc.
+dont use same component inside sam component. but we can use it in any other omponen like app, and any other component 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
