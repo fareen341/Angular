@@ -17,7 +17,7 @@
 [<h2>1.8 Interpolation</h2>](#eight)
 
 [<h2>1.9 Data Binding</h2>](#nine)
-
+Installing bootstrap using npm:
 <li>Property binding</li>
 <li>Style binding</li>
 <li>Event binding(Calling a function onclick of the event)</li>
@@ -221,26 +221,43 @@ iv)tsconfig: for entire application
 <pre>
 Step 1:
 Installing bootstrap using npm:
->npm install bootstrap          //when we hit enter bootstrap will be added into the app.component.html and package.json too
+>npm install bootstrap          //when we hit enter bootstrap will be added into the package.json 
 >npm install jquery             //installing jquery
 
 Step 2:
+Method 1:
+<hr>
 include both in angular.json
 inside the build-> styles: 
 "styles": [
-              "src/styles.css",
-              "./node_modules/bootstrap/dist/css/bootstrap.min.css"        #added by me for bootstrap      
+              
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css"        //added by me for bootstrap      
+              "src/styles.css",         //Custom style should be end or bootstrap will override our style
             ],
           "scripts": ["./node_modules/bootstrap/dist/js/bootstrap.js",
                         "./node_modules/jquery/dist/jquery.js"]
-                    },
+                    },    
+                    
+This is single file when server request it has to load only one file.
+How will we know it's one file? - on browser when we inspect we can see bootstrap file and below it we can see our global style.css file
+If any class have same name in bootstrap and our style.css global class also then write our style.css below bootstrap so that our style will overwrite the bootstrap's class
  
 We included jquery and bootstrap both
           
 Step 3: 
 Restart ng serve
-NOTE: Whenever we does some changes we must restart ng serve
+NOTE: Whenever we does some changes in angular.json we must restart ng serve
+
+Method 2:
+<hr>
+install bootstrap and instead of giving it in angular.json, we can give in global style.css, include this
+@import '~bootstrap/scss/bootstrap.scss';
+
+Method 3:
+<hr>
+We can use starter template but it's not recommended to include inside index.html
 </pre>
+At production build it'll minifiled the long bootstrap file.
 
 <h3>Angular Bootstrap</h3>
 We have angular bootstrap website (https://ng-bootstrap.github.io/#/home).<br>
@@ -370,7 +387,8 @@ siteURL = window.location.href
 
 <a name="nine"><h2>1.9 Data Binding</h2></a><br>
 <h3>Property Binding</h3>
-property binding and interpolation is not same. It is used using [] and interpolation with {{}}. If a variable within the component is to be linked with text box or some other DOM element, we can use Property binding. It uses [ ] around the property which we need to bind and a variable with which the binding is to be done is mentioned in “” on right side. e.g. isdisabled is a Boolean variable declared within component, which determines if the button is disabled or enabled.<br>
+property binding and interpolation is not same. It is used using [] and interpolation with {{}}. If a variable within the component is to be linked with text box or some other DOM element, we can use Property binding. It uses [ ] around the property which we need to bind and a variable with which the binding is to be done is mentioned in “” on right side. e.g. isdisabled is a Boolean variable declared within component, which determines if the button is disabled or enabled.<br><br>
+The attributes of html we can bind them, all html5 attributes we can use in js. Like we can bind src attribute and give src inside the js <br>
 Example: 
 <pre>
 property binding can handle the disable button whereas interplation cannot.
@@ -391,6 +409,19 @@ export class AppComponent {
 &lt;input type="text" disabled={{disabledbox}} value={{name}}&gt; &lt;br&gt;
 &lt;button (click)="enable()"&gt;Enable&lt;/button&gt;
 </pre>
+
+Another Example
+<pre>
+.js 
+product{
+  image=asset/mobile.jpg
+  }
+
+img src={{product.image}}
+OR
+img [src]="product.image"
+</pre>
+Try to give [height]="200" in html and also height=300 in js file and see which one gets the priority.<br>
 
 <h3>Style Binding</h3>
 Difference between normals style and style binding.<br>
