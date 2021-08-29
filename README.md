@@ -421,7 +421,30 @@ img src={{product.image}}
 OR
 img [src]="product.image"
 </pre>
-Try to give [height]="200" in html and also height=300 in js file and see which one gets the priority.<br>
+
+<h3>Class binding</h3>
+<pre>
+style.css
+featured{
+  background-color: blue;
+ }
+ 
+.ts
+products=[
+{
+  id=1,
+  featured:true
+ },
+{
+ id=2,
+ featured:false
+}
+
+.html
+[class.featured]="products.featured"
+
+It it is true apply property.
+</pre>
 
 <h3>Style Binding</h3>
 Difference between normals style and style binding.<br>
@@ -452,6 +475,18 @@ if there is error then color red else green
  
 .html
 &lt;h1 [style.backgroundColor]="err? 'red': 'green' "&gt;dynamic binding 2&lt;/h1&gt;
+</pre>
+
+<b>Applying multiple styles using ngStyle</b><br>
+<pre>
+.html
+[ngStyle]="styleProps"
+
+.ts
+styleProps = {
+  color:red;
+  width:400px;
+}
 </pre>
 
 <h3>How to call a function onclick of the function(Event binding)</h3>  
