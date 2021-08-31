@@ -268,6 +268,13 @@ https://material.angular.io/guide/getting-started<br>
 All material + commands given in doc.<br>
 When the command it'll ask for theme, choose theme, proceed. After successfully installation choose the component from material design and copy html and API related to it.<br>
 
+<h3>Adding bootstrap in form</h3>
+Just insatall the bootstrap using:<br>
+>ng add @ng-bootstrap/schematics<br>
+No need to add,import anything else. Restart ng serve<br>
+Now bootstrap added start using the bootstrap from there official website.<br>
+NOT WORKING<br>
+
 <a name="six"><h2>1.6 Components</h2></a><br>
 <b>Understanding the first component which we get after app creation</b><br>
 <li>We use components for specific task for example login component, sign up component etc.</li>
@@ -443,7 +450,23 @@ products=[
 .html
 [class.featured]="products.featured"
 
-It it is true apply property.
+
+Example2 :
+.ts
+className={
+	'featured-class':true,
+         myClass: flase
+}
+
+.html
+[ngClass]="className"
+
+style.css
+.featured-class{
+	background-color: skyblue;
+}
+
+If it is true apply property.
 </pre>
 
 <h3>Style Binding</h3>
@@ -686,12 +709,12 @@ if the value is string in ts
 show='yes'
 
 .html
-<h1 *ngIf = "show == 'yes' else elseBlock">
+&lt;h1 *ngIf = "show == 'yes' else elseBlock"&gt;
     if block
-</h1>
-<ng-template #elseBlock>
-  <h1>else block</h1>
-</ng-template>
+&lt;/h1&gt;
+&lt;ng-template #elseBlock&gt;
+  &lt;h1&gt;>else block&lt;/h1&gt;
+&lt;/ng-template&gt;
 
 If we want if block in ng template
 &lt;h1 *ngIf = "show == 'yes' ; then ifBlock  else elseBlock"&gt;
@@ -1426,6 +1449,7 @@ getUserValue(value : any){
    Password:&lt;input type="text" ngModel name="password"&gt;&lt;br&gt;&lt;br&gt;
     &lt;button&gt;Get Values&lt;/button&gt;
 </form>
+</pre>
 
 <h3>Template driver form</h3>
 If we want to make any basic form then we use this one.
@@ -1450,12 +1474,6 @@ Here id is simpleForm
 onSubmit we have to give function
 ngModel to bind it with simpleForm
 </pre>
-
-<h3>Adding bootstrap in form</h3>
-Just insatall the bootstrap using:<br>
->ng add @ng-bootstrap/schematics<br>
-No need to add,import anything else. Restart ng serve<br>
-Now bootstrap added start using the bootstrap from there official website.<br>
 
 <h3>Add validation in template driven form</h3>
 <pre>
@@ -1610,7 +1628,8 @@ Three ways to give css:<br>
 2)style.css, which is already present in app folder. It is used for global css.<br>
 3)inside asserts create css files.<br>
 
-<h1>include</h1>
+<h1>extra</h1>
+<pre>
 to make it public then use export and import where need
 @
 ngModule({
@@ -1630,7 +1649,9 @@ we can use same selector many times, as in amazon has same component recent prod
 dont use same component inside sam component. but we can use it in any other omponen like app, and any other component 
 
 
-
+{  path: ':id', component: ProductDetailComponent   }
+ ‘/products/105’ will load ProductDetailComponent for id 105
+</pre>
 
 
 
