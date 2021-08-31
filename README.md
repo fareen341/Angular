@@ -1653,12 +1653,52 @@ dont use same component inside sam component. but we can use it in any other omp
  ‘/products/105’ will load ProductDetailComponent for id 105
 </pre>
 
+<h1>Promise</h1>
+<pre>
+    let buyLaptop = new Promise((resolve, reject)=>{
+      //Promise can se either resolve or reject, not both
+      // resolve('Promise is resolved')
+      reject('Promise is rejected')
+    });
 
+    buyLaptop.then(res=>{
+      console.log('then code:', res)
+    }).catch(res=>{
+      console.log('Catch code:', res)
+    })
+  }
+</pre>
+Async function will always return a promise <br>
 
+This is the big topic will take time, finish revision all other i have finished
 
+<h1>RxJS</h1>
+It is external library. We can use it in non-angular projects, eg: html project. On RxJS marbles website we can see the diagramatic representation on all functions: rxmarbles.com<br>
 
+<b>Observables:</b><br>
+eg: data gets inited and we subscribe to see that data, like youtube channel. To use observables we need to subscribe to it.<br>
 
+<b>Javascript promise</b><br>
+Promise is not the part of rxjs it is part of javascript.<br>
 
+<pre>
+Asyncronous operation as in 
+dknef
+kjenfe
+
+async()
+ksdhiwe
+ejbej
+</pre>
+The lines will be execute line by line so data should wait some time untill lines execute but async will run in background and when the data is ready it'll featch it, it doesnt have to wait.<br>
+<pre>
+Promise 							Observable
+1)async								1)async or sync
+2)return single value(resolve(yes), reject(no))			2)return stream of values
+</pre>
+
+<b>Promise:</b>
+The work like data will fetch on click of the function, so it may get the data or not so it can reject(if no data found), resolve(fetch successfully), and how much time will it take to fetch data this all comes in asyncrounos operation, and we use promise to do such operations.<br>
 
 
 
