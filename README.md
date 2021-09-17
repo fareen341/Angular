@@ -947,10 +947,10 @@ export class ExponentialStrengthPipe implements PipeTransform {
 }
 
 <hr>
-there is one more option replace with, in that case we must pass value in html, eg:
+there is one more option replace with, in that case we must pass value in html, but we can also give default value eg:
 @Pipe({name: 'exponentialStrength'})
 export class ExponentialStrengthPipe implements PipeTransform {
-  transform(value: number, replacewith): number {
+  transform(value: number, replacewith: string = ' '): number {
     return Math.pow(' ', replacewith);
   }
 }
@@ -1711,6 +1711,76 @@ Promise 							Observable
 
 <b>Promise:</b>
 The work like data will fetch on click of the function, so it may get the data or not so it can reject(if no data found), resolve(fetch successfully), and how much time will it take to fetch data this all comes in asyncrounos operation, and we use promise to do such operations.<br>
+
+<h1>Using typescript to avoid error</h1>
+<b>pure and impure function in js:</b>
+<p>pure function will always return pure output, it does'nt depend on outside of that function variable, and it is memoic(output is saved in memory) eg:
+if i have one fucntion which return a+b and pass (30+10) this will always return 40 so this will be memoic meaning it'll save the output in memory, 
+pure=value will be same(pure), this one is faster cuz output is saved in memory
+some pure pipe: currency pipe</p>
+
+<p>impure function depends on outside of that function variable so if i have function which returns a+b+c and i pass (30+40+c) where c value always changes so it does'nt memoic the output and always run the inside logic.
+impure=value will be different(impure)
+some impure pipe: slicepipe(cuz array length will be different)</p>
+
+<b>using the typescript datatype we can minimize the compiletime errors</b>
+<p>example: by mistake the backend data is coming with error of image name with imae, now the image will not be visible at the front end, in some case for example one sale item which is not in sale it's value is 'false' but in string not in boolean, then the product might show sale item that will lose the money bcoz of error, we can avoide all these by using typescript.</p>
+<pre>
+products=[
+	{
+	      id:1,
+	      price:1000,
+	      name:"Fossil Chronograph Black Men Watch",
+	      imge:"assets/img/a1.jpg",
+    	},
+    	{
+	      id:2,
+	      price:3000,
+	      name:"Cassio Chronograph Black Men Watch",
+	      image:"assets/img/d1.jpg",
+	   },
+	];
+</pre>
+<p>we can create custom type for all these data.</p>
+<p>In component create file product.ts and give your custom type.<br>
+we can take class or interface as well, 
+if we use interface we can only declare value and its type
+using class we can declare method as well</p>
+<pre>
+product.ts
+export interface Product{
+        id:number;
+        price:number;
+        name:string;
+        image:string;
+}
+
+create a type Product for product which is of array type so use [].
+product: Product[] =[
+</pre>
+<p>Now wheneven in the product there is spelling mistake or missing value typescript will throw the error at compile time, before that there was some error in image spelling so it was'nt throwing the error but not showing the image on the frontend. Now we can see where is the error, this is usefull when data is large.</p>
+<br>
+<b>Making a field optional.</b>
+<p>We can make some data optional like sale price as optional, cuz some product have sale and some not. If we don't make it optional it'll give compile time error missing sale price.</p>
+
+<b>Adding category</b>
+<p>Using category we have avoid adding unnessary category in the products. Which will also help us in filtering, example we instead of female category we have given spelling mistake then our product will not be visible in female category filter. Also if owner wants to change the category, then we only have to change in Category type example band becomes special band etc.</p>
+<pre>
+export interface Product{
+        category:Catogery;
+}
+export enum Catogery{
+    Band = 'band',
+    Female = 'female',
+    Male = 'male'
+}
+
+products=[{
+      category:Catogery.Male
+    },]
+    
+now if we give another data type to category it'll throw and error cuz it's now Category type and it'll except only that.
+</pre>
 
 
 
