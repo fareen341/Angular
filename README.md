@@ -946,6 +946,18 @@ export class ExponentialStrengthPipe implements PipeTransform {
   }
 }
 
+<hr>
+there is one more option replace with, in that case we must pass value in html, eg:
+@Pipe({name: 'exponentialStrength'})
+export class ExponentialStrengthPipe implements PipeTransform {
+  transform(value: number, replacewith): number {
+    return Math.pow(' ', replacewith);
+  }
+}
+
+&lt;h3&gt;{{2 | exponentialStrength: '$'}}&lt;/h3&gt;
+<hr>
+
 .html
 &lt;h3&gt;{{2 | exponentialStrength: 10}}&lt;/h3&gt;
 
