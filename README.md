@@ -1762,6 +1762,13 @@ product: Product[] =[
 <br>
 <b>Making a field optional.</b>
 <p>We can make some data optional like sale price as optional, cuz some product have sale and some not. If we don't make it optional it'll give compile time error missing sale price.</p>
+<pre>
+export interface Product{
+        sale?:number;
+}
+
+now if we miss sale it wont' give error
+</pre>
 
 <b>Adding category</b>
 <p>Using category we have avoid adding unnessary category in the products. Which will also help us in filtering, example we instead of female category we have given spelling mistake then our product will not be visible in female category filter. Also if owner wants to change the category, then we only have to change in Category type example band becomes special band etc.</p>
