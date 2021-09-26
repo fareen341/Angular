@@ -1682,8 +1682,6 @@ dont use same component inside sam component. but we can use it in any other omp
 </pre>
 Async function will always return a promise <br>
 
-This is the big topic will take time, finish revision all other i have finished
-
 <h1>RxJS</h1>
 It is external library. We can use it in non-angular projects, eg: html project. On RxJS marbles website we can see the diagramatic representation on all functions: rxmarbles.com<br>
 
@@ -1788,6 +1786,151 @@ products=[{
     
 now if we give another data type to category it'll throw and error cuz it's now Category type and it'll except only that.
 </pre>
+
+<h1>Rxjs</h1>
+<p>There is no serialization it does everything using event</p>
+<p>Ajax uses promise.</p>
+<b>Promise and Rxjs</b><br>
+<p>Promise can not gurentee it can either success or fail after some time. Rxjs can handle things whicg promise cannot.</p>
+<p>Rxjs(Reactive extenction for javascript) observables is like a cctv camera, but we can see the data when only we attach it to some device like tv. We need to subscribe meaning connect to it. The observation is async data. Whereas in promise we get data promise either success or fail but we have to wait for it. Observable are lazy whenever we subscribe it'll give data.</p>
+<p>Observable if the error come it'll stop destroy we need to again subscribe to it.</p>
+<p>Observable has 100+ operators.</p>
+<pre>
+1)Simple observable
+
+  //observable simple one                    //this entire value is consider as response not value of value
+  private obs1$ = of(10, 'Hello', [20,30]);
+  getObs1(): Observable<any>{
+    return this.obs1$
+  }
+  // observer does the complete automatically
+  
+  
+  
+  ngOnInit(): void {
+    // console.log(this.getObs1)
+    //it has 3 function, next error and complete 
+    this.getObs1().subscribe(val=>{
+      console.log(val);
+    }, err=>{
+      console.log(err);
+    }, () =>{
+      console.log('completed');
+    });
+   
+2)Observalble created by me:
+  //observable creating by me, i have to complete it by myself but 'of' does compete automatically
+  private obs2$ = new Observable(observer =>{
+    observer.next(10);
+    observer.next('Hello');
+
+    throw Error("Some error");  //if there is error complete will not be called, so observale get terminated
+    observer.next([20,30]);
+    observer.complete();  //we need to call it or it'll not get complete and keep on running
+  });
+  getObs2(): Observable<any>{
+    return this.obs2$
+  }
+  //the above obs1 observer will works this way
+
+
+  ngOnInit(): void {
+    // console.log(this.getObs1)
+    //it has 3 function, next error and complete 
+    this.getObs2().subscribe(val=>{
+      console.log(val);
+    }, err=>{
+      console.log(err);
+    }, () =>{
+      console.log('completed');
+    });
+  }
+  
+Once the observable completed it does not run the below code
+private obs2$ = new Observable(observer =>{
+    observer.next(10);
+    observer.next('Hello');
+
+    setTimeout(()=>{
+      observer.next([20,30]);
+    }, 10)
+    // throw Error("Some error");  //if there is error complete will not be called, so observale get terminated
+    
+    observer.complete();  //we need to call it or it'll not get complete
+  });
+  
+Output:
+10
+Hello
+Completed
+ We see that our array is not called and observer did'nt call it after 10 sec, cuz once the observable gets completed it's completed.
+
+observable.complete()
+observer.next([20,30]);    	//this will not be printed cuz observable is already completed.
+</pre>
+
+<pre>
+in case of Api call if is  not completed we need to unsubscribe it, if we don't unsubscribe something bad can happens.
+
+PENDING
+
+</pre>
+
+<pre>
+Operators in rxjs:
+
+  private obs3$ = of(1,2,3,4,5)
+  getObs3(): Observable<any>{
+    return this.obs3$
+  }
+
+  ngOnInit(): void {
+    this.getObs3()
+    .pipe(    //we can method many parameteres here which are operators
+      filter(val => val % 2 === 0), map(val => val * 3),
+      //first(val => val %2 === 0),
+      //take(2) --->return only 2 variable
+    )   
+    .subscribe(val => console.log(val));
+  }
+  
+we can see the marble diagram it give diagram represenation of the function
+</pre>
+ALways do subscription only once. do the subscription OnInit()<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
