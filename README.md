@@ -1896,7 +1896,9 @@ Operators in rxjs:
   
 we can see the marble diagram it give diagram represenation of the function
 </pre>
-ALways do subscription only once. do the subscription OnInit()<br>
+Always do subscription only once. do the subscription OnInit()<br>
+<p>Behaviour subject: If we want previous value use behaviour subject. Subject:</p>
+<p>Async pipe: Async handles subscribe and unsubscribe on its own.</p>
 
 
 
