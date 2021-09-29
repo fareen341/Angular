@@ -1900,9 +1900,23 @@ Always do subscription only once. do the subscription OnInit()<br>
 <p>Behaviour subject: If we want previous value use behaviour subject. Subject:</p>
 <p>Async pipe: Async handles subscribe and unsubscribe on its own.</p>
 
+<h1>Simple Navigation</h1>
+<pre>
+app.module.ts:
 
+import {Routes, RouterModule} from "@angular/router"
 
+const routes: Routes =[
+  {path: 'home', component: HomeComponent},
+  {path: 'product', component: WatchesComponent},
+  {path:'', redirectTo: '/home', pathMatch:'full'}, //redirect to home if the link exists, usefull for old link which is changed.
+  {path:'**', component: PageNotFoundComponent} //this must be at last cuz it is widlcard link ** meaning all links
+]
 
+imports: [
+    RouterModule.forRoot(routes)
+  ],
+</pre>
 
 
 
