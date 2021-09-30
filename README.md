@@ -1918,8 +1918,15 @@ imports: [
   ],
 </pre>
 
-
-
+<b>Parameter in routing</b><br>
+Example: product/1 
+<pre>
+app.module.ts
+	{path:'product/:id', component: ProductDetailComponent},
+	
+giving link inside product component
+	<a [routerLink]="['/product', prod.id]"></a> 		#as in: product/2
+</pre>
 
 
 
