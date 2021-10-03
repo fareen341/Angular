@@ -672,7 +672,13 @@ exports:[
   ]
   
 </pre>
-
+<p>ng g module product/products --flat, use this to made it not make folder.</p>
+<b>Shared module</b><br>
+<p>ng g module shared. One component cannot be part of multiple modules, we need to create it seperate</p>
+<pre>
+To use this module import this module where we needs it, this are private to that shared module if we need to start using it outside then we have to make indlude it in exports. 
+Same for forms and router module we can export them inside this shared module cuz they are common, if we need forms and module in shared module also we can import it otherwise just export it.
+</pre>
 
 <a name="nineteen"><h2>1.19 Typescript</h2></a><br>
 <h3>Condition statements in angular</h3>  
@@ -1312,6 +1318,11 @@ const routes: Routes = [
 
 Do same for users module too
 
+import { AppRoutingModule } from './app-routing.module';
+  imports: [
+    AppRoutingModule,
+  ],
+
 Step 3:
 .html
 &lt;h1&gt;Link coming from the module's page&lt;/h1&gt;
@@ -1333,6 +1344,7 @@ What is the difference between normal loading and lazy loading?<br>
 Lazy loading basically apply on routing.<br>
 Whenever we load a page then if we have 1000 pages all will load together which make the website slow, in case of lazy loading only the page we need will load this increase the speed and improve the performance.<br>
 NOTE: In the above example we were importing the admin and users inside the app.module.ts, But in this case we don't do that.<br>
+<p>Remove the modules and import statements we loaded inside the AppModule cuz it loads at start. So import it inside the module so when a module is required it'll be load. <b>This is important step.</b></p>
 <pre>
 Step 1: in admin routing file add
 import { LoginComponent } from './login/login.component';
@@ -1916,6 +1928,13 @@ const routes: Routes =[
 imports: [
     RouterModule.forRoot(routes)
   ],
+ 
+&lt;li class="nav-item"&gt;
+       &lt;a class="nav-link" [routerLink]="['/home']" routerLinkActive="active"&gt;Home&lt;/a&gt;
+&lt;/li&gt;
+&lt;li class="nav-item"&gt;
+       &lt;a class="nav-link" [routerLink]="['/product']" routerLinkActive="active"&gt;Products&lt;/a&gt;
+&lt;/li&gt;
 </pre>
 
 <b>Parameter in routing</b><br>
@@ -1928,12 +1947,16 @@ giving link inside product component
 	<a [routerLink]="['/product', prod.id]"></a> 		#as in: product/2
 </pre>
 
+<h2>Guards</h2>
+<p>Preventing unauthorized access using guards, example admin page.</p>
+<p>Resolve: in some case we need to reload the page, as in to fetch some data.</p>
+<p>CanActivate:</p>
+<pre>
+ng g guard product-id-validation
+select the guard which we want
 
 
-
-
-
-
+</pre>
 
 
 
