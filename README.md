@@ -1444,6 +1444,7 @@ This won't load on first the page is loaded when we click the button "Admin load
 <h3>Forms Intro</h3>
 Types:1) Reactive form(control data in component.ts file) 2)Template drivern(control data in component.html file).<br>
 They both have validation and handling data is slight different in both.<br>
+<p>We don't use action in form in angular form</p>
 
 ![form](https://user-images.githubusercontent.com/59610617/129926359-b38d19ae-f38b-4624-8dd4-ac0769a79a58.png)<br>
 
@@ -1954,11 +1955,7 @@ giving link inside product component
 <pre>
 ng g guard product-id-validation
 select the guard which we want
-
-
 </pre>
-
-
 
 
 
