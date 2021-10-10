@@ -1957,8 +1957,9 @@ ng g guard product-id-validation
 select the guard which we want
 </pre>
 
-
-
+<h1>BUILD</h1>
+<p>angular.json is important for build. "projects" key can have many projects and libraries and "defaultProjects" will be default when browser opens</p>
+<p></p>
 
 
 
