@@ -1959,9 +1959,15 @@ select the guard which we want
 
 <h1>BUILD</h1>
 <p>angular.json is important for build. "projects" key can have many projects and libraries and "defaultProjects" will be default when browser opens</p>
-<p></p>
 
-
+<h1>Deploying angular project on github</h1>
+<pre>
+1)Upload the project on git.
+2)npm install -g angular-cli-ghpages.
+3)ng build --prod --base-href "https://<user-name>.github.io/<repo>/"
+	As in: https://fareen341.github.io/portfolio/
+4)ngh --dir dist/<angular-project-name>  (which is the name of the dist folder).
+</pre>
 
 
 
