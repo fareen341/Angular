@@ -1964,7 +1964,7 @@ select the guard which we want
 <pre>
 1)Upload the project on git.
 2)npm install -g angular-cli-ghpages.
-3)ng build --prod --base-href "https://user-name.github.io/repo/"
+3)ng build --prod --base-href "https://user-name.github.io/repo-name/"
 	As in: https://fareen341.github.io/portfolio/
 4)ngh --dir dist/angular-project-name  (which is the name of the dist folder).
 </pre>
