@@ -630,6 +630,7 @@ Eg: >ng generate module users
 
 <b>Creating component inside the module users</b>
 >ng generate component users/login          //if we don't use users/ it will by default create module inside the app folder.<br>
+>first give the folder name and then the file which we want to create eg: portfolio/about so about will be inside the portfolio.
 
 <b>Using module's component</b><br>
 <pre>
