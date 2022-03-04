@@ -1970,10 +1970,11 @@ select the guard which we want
 4)ngh --dir dist/angular-project-name  (which is the name of the dist folder).
 </pre>
 
-
-
-
-
+<h1>To run angular app on aws machine</h1>
+<pre>
+ng serve --host ec2-dns
+ng serve --host ec2-13-233-112-215.ap-south-1.compute.amazonaws.com
+</pre>
 
 
 
